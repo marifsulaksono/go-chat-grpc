@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package chatserver;
+
+option go_package = "go-chat-grpc/protobuf/chatserver";
+
+message FromServer {
+    string name = 1;
+    string body = 2;
+}
+
+message FromClient {
+    string name = 1;
+    string body = 2;
+}
+
+service ChatServices {
+    rpc ChatService(stream FromClient) returns (stream FromServer){};
+}
